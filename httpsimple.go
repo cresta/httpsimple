@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"io"
+	"net"
 	"net/http"
 	"time"
 
@@ -85,4 +86,22 @@ func NotFoundHandler(logger *zapctx.Logger) http.Handler {
 		logger.With(zap.String("handler", "not_found"), zap.String("url", req.URL.String())).Warn(req.Context(), "unknown request")
 		http.NotFoundHandler().ServeHTTP(rw, req)
 	})
+}
+
+func BasicServerRun(logger *zapctx.Logger, server *http.Server, onListen func(listener net.Listener), addr string) error {
+	ln, err := net.Listen("tcp", addr)
+	if err != nil {
+		return err
+	}
+	if onListen != nil {
+		onListen(ln)
+	}
+
+	logger.Info(context.Background(), "starting server")
+	serveErr := server.Serve(ln)
+	if serveErr != http.ErrServerClosed {
+		return serveErr
+	}
+	logger.Info(context.Background(), "Server finished")
+	return nil
 }
