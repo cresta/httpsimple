@@ -4,20 +4,21 @@ import (
 	"context"
 	"expvar"
 	"fmt"
-	"github.com/cresta/zapctx"
 	"net"
 	"net/http"
 	"net/http/pprof"
 	"sync"
 	"sync/atomic"
+
+	"github.com/cresta/zapctx"
 )
 
 type DebugServer struct {
 	http.Server
 	ListenAddr string
-	Logger *zapctx.Logger
-	listener atomic.Value
-	mu sync.Mutex
+	Logger     *zapctx.Logger
+	listener   atomic.Value
+	mu         sync.Mutex
 }
 
 func (d *DebugServer) Close() error {
