@@ -1,6 +1,6 @@
 module github.com/cresta/httpsimple
 
-go 1.15
+go 1.19
 
 require (
 	github.com/cresta/gotracing v0.0.0-20201224013332-658de9731e1b
