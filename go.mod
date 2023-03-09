@@ -4,7 +4,7 @@ go 1.20
 
 require (
 	github.com/cresta/gotracing v0.2.2
-	github.com/cresta/magehelper v0.0.68
+	github.com/cresta/magehelper v0.0.69
 	github.com/cresta/zapctx v0.0.3
 	github.com/gorilla/mux v1.8.0
 	go.uber.org/zap v1.24.0
