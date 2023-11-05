@@ -6,7 +6,7 @@ require (
 	github.com/cresta/gotracing v0.2.2
 	github.com/cresta/magehelper v0.1.0
 	github.com/cresta/zapctx v0.0.3
-	github.com/gorilla/mux v1.8.0
+	github.com/gorilla/mux v1.8.1
 	go.uber.org/zap v1.24.0
 )
 
